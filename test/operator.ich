@@ -2,6 +2,15 @@ var failed: int = 0;
 var passed = 0;
 
 func main(): int {
+    // string appen
+    var s1 = "foo";
+    assert_str("foobar", s1 + "bar", "foo+bar");
+    var s2 = "foo" + "bar" + "baz";
+    assert_str("foobarbaz", s2, "foo+bar+baz");
+    var s3 = "hello";
+    s3 += " world";
+    assert_str("hello world", s3, "string +=");
+
     // not
     var b: bool = false;
     if (!b) {
@@ -147,6 +156,15 @@ func assert(x: int, y: int, msg: string): void {
         passed++;
     } else {
         cprint("NG: %%msg%% expect-> %x%  actual-> %y%", ICH_RED);
+        failed++;
+    }
+}
+func assert_str(x: string, y: string, msg: string): void {
+    if (x == y) {
+        cprint("OK: %%msg%%", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("NG: %%msg%% expect-> '%x%',  actual-> '%y%'", ICH_RED);
         failed++;
     }
 }

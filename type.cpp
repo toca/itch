@@ -151,8 +151,8 @@ bool Type::validate(NodeKind kind, Type* rhs)
         }
         break;
     case type::STR:
-        //if (kind == NodeKind::ADD || kind == NodeKind::ADD_ASSIGN) is_valid = true;
-        if (kind == NodeKind::EQ || kind == NodeKind::NE || kind == NodeKind::ASSIGN)
+        if (kind == NodeKind::ADD || kind == NodeKind::ADD_ASSIGN ||
+            kind == NodeKind::EQ || kind == NodeKind::NE || kind == NodeKind::ASSIGN)
         {
             is_valid = true;
         }

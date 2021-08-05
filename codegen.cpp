@@ -346,7 +346,14 @@ std::wstring gen_expr(Node* node)
     switch (node->kind)
     {
     case NodeKind::ADD:
-        println(L"SET /A \"__expr_res%d=(%s+%s)\"", count, left_expr.c_str(), right_expr.c_str());
+        if (node->type->is_integer())
+        {
+            println(L"SET /A \"__expr_res%d=(%s+%s)\"", count, left_expr.c_str(), right_expr.c_str());
+        }
+        else if (node->type->is_string())
+        {
+            println(L"SET \"__expr_res%d=%s%s\"", count, left_expr.c_str(), right_expr.c_str());
+        }
         return format(L"%%__expr_res%d%%", count++);
     case NodeKind::SUB:
         println(L"SET /A \"__expr_res%d=(%s-%s)\"", count, left_expr.c_str(), right_expr.c_str());
@@ -387,7 +394,14 @@ std::wstring gen_expr(Node* node)
         }
         return left_expr;
     case NodeKind::ADD_ASSIGN:
-        println(L"SET /A \"%s+=%s\"", left_expr.c_str(), right_expr.c_str());
+        if (node->type->is_integer())
+        {
+            println(L"SET /A \"%s+=%s\"", left_expr.c_str(), right_expr.c_str());
+        }
+        else if (node->type->is_string())
+        {
+            println(L"SET \"%s=%%%s%%%s\"", left_expr.c_str(), left_expr.c_str(), right_expr.c_str());
+        }
         return left_expr;
     case NodeKind::SUB_ASSIGN:
         println(L"SET /A \"%s-=%s\"", left_expr.c_str(), right_expr.c_str());

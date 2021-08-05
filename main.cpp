@@ -13,10 +13,10 @@ std::wstring source{};
 std::vector<Node*> nodes{};
 
 
-std::wstring buildin_functions()
+std::wstring builtin_functions()
 {
     std::wstring s = LR"(
-// ==== ====  Buildin-Functions  ==== ====
+// ==== ====  Built-in-Functions  ==== ====
 
 // command ====================================================
 func exec(command: string): string {
@@ -422,7 +422,7 @@ int wmain(int argc, wchar_t* argv[])
             in_path = argv[1];
         }
         source = read_file(in_path) + L"\n";
-        source += buildin_functions();
+        source += builtin_functions();
         
         // output
         if (out_path.empty())
