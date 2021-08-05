@@ -1,0 +1,94 @@
+var passed: int = 0;
+var failed: int = 0;
+
+
+func main(): int {
+   
+    // default value
+    // int
+    var i: int;
+    assert(0, i, "int default value");
+    var h: int = 0x10;
+    assert(16, h, "0x10 hexadecimal");
+    var o: int = 010;
+    assert(8, o, "010 octal");
+    // string
+    var s: string;
+    assert_str("", s, "string default value");
+    // bool
+    var b: bool;
+    assert_bool(false, b, "bool default value");
+    // declaration
+    var bool_var: bool;
+    var string_var: string;
+    var int_var: int;
+    var var_var: int;
+    var _var_var: int;
+    var _var_: int;
+    var if_var: int;
+    var func_var: int;
+
+    var integer = 42;
+    assert(42, integer, "shorthand type int");
+    var str = "hello";
+    assert_str("hello", str, "shorthand type str");
+    var falsy = false;
+    assert_bool(false, falsy, "shorthand type false");
+    var truthy = true;
+    assert_bool(true, truthy, "shorthand type true");
+
+
+
+
+
+
+
+
+
+
+
+    // result
+    print("--------------------------------------------------------------");
+    if (0 < failed) {
+        cprint("failed: [%failed%] cases       (declaration.ich)", ICH_RED);
+    }
+    if (0 < passed) {
+        cprint("passed: [%passed%] cases       (declaration.ich)", ICH_GREEN);
+    }
+
+    if (0 < failed) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+func assert(x: int, y: int, msg: string): void {
+    if (x == y) {
+        cprint("OK: %%msg%%", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("NG: %%msg%% expect-> %x%  actual-> %y%", ICH_RED);
+        failed++;
+    }
+}
+
+func assert_str(x: string, y: string, msg: string): void {
+    if (x == y) {
+        cprint("OK: %%msg%%", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("NG: %%msg%% expect-> %x%  actual-> %y%", ICH_RED);
+        failed++;
+    }
+}
+
+func assert_bool(x: bool, y: bool, msg: string): void {
+    if (x == y) {
+        cprint("OK: %%msg%%", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("NG: %%msg%% expect-> %x%  actual-> %y%", ICH_RED);
+        failed++;
+    }
+}

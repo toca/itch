@@ -1,0 +1,152 @@
+var failed: int = 0;
+var passed = 0;
+
+func main(): int {
+    // not
+    var b: bool = false;
+    if (!b) {
+        cprint("!false", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("!false", ICH_RED);
+        failed++;
+    }
+    b = true;
+    if (!b) {
+        cprint("!true", ICH_RED);
+        failed++;
+    } else {
+        cprint("!true", ICH_GREEN);
+        passed++;
+    }
+
+    // if (0 < failed) {
+    //     cprint("[%failed%] tests failed", ICH_RED);
+    // }
+
+    // and
+    if (true && false) {
+        cprint("true && false", ICH_RED);
+        failed++;
+    } else {
+        cprint("true && false", ICH_GREEN);
+        passed++;
+    }
+    if (true && true) {
+        cprint("true && true", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("true && true", ICH_RED);
+        failed++;
+    }
+
+    // or
+    if (true || false) {
+        cprint("true || false", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("true || false", ICH_RED);
+        failed++;
+    }
+    if (false || false) {
+        cprint("false || false", ICH_RED);
+        failed++;
+    } else {
+        cprint("false || false", ICH_GREEN);
+        passed++;
+    }
+    if (true || true) {
+        cprint("true || true", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("true || true", ICH_GREEN);
+        failed++;
+    }
+    // and-or
+    if (false || true && false) {
+        cprint("false || true && false", ICH_RED);
+        failed++;
+    } else {
+        cprint("false || true && false", ICH_GREEN);
+        passed++;
+    }
+    if ((true || false) && true) {
+        cprint("(true || false) && true", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("(true || false) && true", ICH_RED);
+        failed++;
+    }
+
+    // ==
+    if (1 == 1) {
+        cprint("1==1", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("1==1", ICH_RED);
+        failed++;
+    }
+    // !=
+    if (1 != 1) {
+        cprint("1!=1", ICH_RED);
+        failed++;
+    } else {
+        cprint("1!=1", ICH_GREEN);
+        passed++;
+    }
+
+    if (0 < 1) {
+        cprint("0 < 1", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("0 < 1", ICH_RED);
+        failed++;
+    }
+    if (1 < 0) {
+        cprint("1 < 0", ICH_RED);
+        failed++;
+    } else {
+        cprint("1 < 0", ICH_GREEN);
+        passed++;
+    }
+    if (0 <= 0) {
+        cprint("0 <= 0", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("0 <= 0", ICH_RED);
+        failed++;
+    }
+    if (1 <= 0) {
+        cprint("1 <= 0", ICH_RED);
+        failed++;
+    } else {
+        cprint("1 <= 0", ICH_GREEN);
+        passed++;
+    }
+     
+
+
+    // result
+    print("--------------------------------------------------------------");
+    if (0 < failed) {
+        cprint("failed: [%failed%] cases       (operator.ich)", ICH_RED);
+    }
+    if (0 < passed) {
+        cprint("passed: [%passed%] cases       (operator.ich)", ICH_GREEN);
+    }
+    if (0 < failed) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+func assert(x: int, y: int, msg: string): void {
+    if (x == y) {
+        cprint("OK: %%msg%%", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("NG: %%msg%% expect-> %x%  actual-> %y%", ICH_RED);
+        failed++;
+    }
+}

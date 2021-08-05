@@ -1,0 +1,100 @@
+var failed: int = 0;
+var passed = 0;
+
+var global_var: int = 10;
+func main(): int {
+   
+    // if
+    var main_var: int = 23;
+    if (true) {
+        cprint("OK: if-1", ICH_GREEN);
+    } else {
+        cprint("NG: if-1", ICH_RED);
+        failed++;
+    }
+    if (global_var < 20) {
+        cprint("OK: if-2", ICH_GREEN);
+    } else {
+        cprint("NG: if-2", ICH_RED);
+        failed++;
+    }
+    if (true) {
+        var main_var: int = 42;
+    }
+    if (true) {
+        main_var = 100;
+    }
+    if (main_var == 100) {
+        cprint("OK: if-3", ICH_GREEN);
+    } else {
+        cprint("NG: if-3", ICH_RED);
+        failed++;
+    }
+
+
+    // for
+    var for_counter: int = 0;
+    for(;;) {
+        for_counter++;
+        if (3 < for_counter) {
+            break;
+        }
+    }
+    assert(4, for_counter, "OK: for-1");
+
+    var out_for: int = 10;
+    for(var i: int = 0; i < 1; i++) {
+        var out_for: int = 20;
+    }
+    assert(10, out_for, "OK: for-2");
+
+    for(var i: int = 0; i < 1; i++) {
+        out_for = 23;
+    }
+    assert(23, out_for, "OK: for-3");
+
+
+    // result
+    print("--------------------------------------------------------------");
+    if (0 < failed) {
+        cprint("failed: [%failed%] cases       (control.ich)", ICH_RED);
+    }
+    if (0 < passed) {
+        cprint("passed: [%passed%] cases       (contol.ich)", ICH_GREEN);
+    }
+    if (0 < failed) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+func assert(x: int, y: int, msg: string): void {
+    if (x == y) {
+        cprint("OK: %%msg%%", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("NG: %%msg%% expect-> %x%  actual-> %y%", ICH_RED);
+        failed++;
+    }
+}
+
+func assert_str(x: string, y: string, msg: string): void {
+    if (x == y) {
+        cprint("OK: %%msg%%", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("NG: %%msg%% expect-> %x%  actual-> %y%", ICH_RED);
+        failed++;
+    }
+}
+
+func assert_bool(x: bool, y: bool, msg: string): void {
+    if (x == y) {
+        cprint("OK: %%msg%%", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("NG: %%msg%% expect-> %x%  actual-> %y%", ICH_RED);
+        failed++;
+    }
+}

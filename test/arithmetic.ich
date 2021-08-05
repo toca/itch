@@ -1,0 +1,78 @@
+var failed: int = 0;
+var passed = 0;
+
+func main(): void {
+    // ADD
+    assert(2, 1+1, "1 + 1");
+    assert(13, 7+6, "7 + 6");
+    // SUB
+    assert(42, 51-9, "51 - 9");
+    assert(20, 64-44, "64 - 44");
+    // MUL
+    assert(90, 30*3, "30 * 3");
+    assert(54, 9*6, "9 * 6");
+    // DIV
+    assert(9, 45/5, "45 / 5");
+    assert(5, 55/11, "55 / 11");
+    // MOD
+    assert(2, 17%3, "17 %% 3");
+    assert(9, 109%10, "109 %% 10");
+
+    // ADD + ASSIGN
+    var add_asgn: int = 4;
+    add_asgn += 2;
+    assert(6, add_asgn, "4 += 2");
+    // SUB + ASSIGN
+    var sub_asgn: int = 8;
+    sub_asgn -= 3;
+    assert(5, sub_asgn, "8 -= 3");
+    // MUL + ASSIGN
+    var mul_asgn: int = 10;
+    mul_asgn *= 4;
+    assert(40, mul_asgn, "10 *= 4");
+    // DIV + ASSIGN
+    var div_asgn: int = 27;
+    div_asgn /= 3;
+    assert(9, div_asgn, "27 /= 3");
+    // MOD + ASSIGN
+    var mod_asgn: int = 13;
+    mod_asgn %= 10;
+    assert(3, mod_asgn, "13 %= 10");
+
+
+    // post increment
+    var incr: int = 10;
+    incr++;
+    assert(11, incr, "10++");
+    incr++;
+    assert(12, incr, "11++");
+
+    // post decrement
+    var decr: int = 10;
+    decr--;
+    assert(9, decr, "10--");
+    decr--;
+    assert(8, decr, "9--");
+
+
+
+
+    // result
+    print("--------------------------------------------------------------");
+    if (0 < failed) {
+        cprint("failed: [%failed%] cases       (arithmetic.ich)", ICH_RED);
+    }
+    if (0 < passed) {
+        cprint("passed: [%passed%] cases       (arithmetic.ich)", ICH_GREEN);
+    }
+}
+
+func assert(x: int, y: int, msg: string): void {
+    if (x == y) {
+        cprint("OK: %%msg%%", ICH_GREEN);
+        passed++;
+    } else {
+        cprint("NG: %%msg%% expect-> %x%  actual-> %y%", ICH_RED);
+        failed++;
+    }
+}
