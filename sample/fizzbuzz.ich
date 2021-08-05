@@ -1,0 +1,13 @@
+func main(): void {
+    for(var i = 1; i < 30; i++) {
+        if (0 == i % 15) {
+            print("fizzbuzz");
+        } else if (0 == i % 5) {
+            print("buzz");
+        } else if (0 == i % 3) {
+            print("fizz");
+        } else {
+            print("%i%");
+        }
+    }
+}

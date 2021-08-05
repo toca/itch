@@ -526,8 +526,9 @@ print("hello");
    // -> 42
 ```
 
-* error (pause?)
+# future
+* error?
 * str_match?
-* starts_with
-* ends_with
-* array, at, len, push, pop
+* str_starts_with
+* str_ends_with
+* array(at, len, push, pop)
