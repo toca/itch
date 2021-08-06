@@ -1,0 +1,88 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "itch",
+	"patterns": [
+		{ "include": "#declarator" },
+		{ "include": "#type" },
+		{ "include": "#constant" },
+		{ "include": "#constant_number" },
+		{ "include": "#control" },
+		{ "include": "#strings" },
+		{ "include": "#command" },
+		{ "include": "#comment" }
+
+	],
+	"repository": {
+		"test": {
+			"patterns": [{
+				"name": "invalid.illegal",
+				"match": ".*"
+			}]
+		},
+		"declarator": {
+			"patterns": [{
+				"name": "storage.type.itch",
+				"match": "\\b(var|const)\\b"
+			}]
+		},
+		"type": {
+			"patterns": [{
+				"name": "storage.type.itch",
+				"match": "\\b(int|bool|string|void|func)\\b"
+			}]
+		},
+		"constant": {
+			"patterns": [{
+				"name": "constant.language.itch",
+				"match": "\\b(true|false)\\b"
+			}]
+		},
+		"constant_number": {
+			"patterns": [
+				{
+					"name": "constant.numeric.itch",
+					"match": "\\b-?[0-9]+\\b"
+				}
+			]
+		},
+		"control": {
+			"patterns": [{
+				"name": "keyword.control.itch",
+				"match": "\\b(if|for|return|continue|break)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.itch",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.itch",
+					"match": "\\\\."
+				},
+				{
+					"name": "variable.other.itch",
+					"begin": "%",
+					"end": "%"
+				}
+			]
+		},
+		"command": {
+			"name": "support.variable.itch",
+			"begin": "`",
+			"end": "`",
+			"patterns": [
+				{
+					"name": "constant.character.escape.itch",
+					"match": "\\`."
+				}
+			]
+		},
+		"comment": {
+			"name": "comment.line.double-slash.itch",
+			"begin": "//",
+			"end": "\n"
+		}
+	},
+	"scopeName": "source.ich"
+}
