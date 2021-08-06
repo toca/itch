@@ -397,7 +397,7 @@ int wmain(int argc, wchar_t* argv[])
         switch (mode)
         {
         case Mode::HELP:
-            wprintf(L"---- icl itch lang compiler ----\n");
+            wprintf(L"%%%% icl itch lang compiler %%%%\n");
             wprintf(L"Useage: icl.exe [Options] <input_file>\n");
             wprintf(L"Options:\n");
             wprintf(L"  -i <file>    input from <file>\n");
