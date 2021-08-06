@@ -30,7 +30,7 @@ itch は windows バッチファイルを生成するためのシンプルなプ
 
 # getting started
 ## compile
-* コンパイラをダウンロード (TBA) or ビルドする
+* ツールセットを [ダウンロード](#https://github.com/toca/itch/releases/) あるいはソースコードからビルドする
 * `>icl.exe sample/fizzbuzz.ich` ... fizzbuzz.bat が生成される
 * `>fizzbuzz.bat` ... fizzbuzz 実行
 ## hello world
@@ -525,6 +525,15 @@ print("hello");
    print(i_to_s(42));
    // -> 42
 ```
+## Tools
+### icl.exe
+* コンパイラ (トランスコンパイラ) です
+### itch-syntax-n.n.n.vsix
+* Visual Studio Code 向けのエクステンションです. インストールするとシンタックスハイライトが有効になります
+* インストール ... > code --install-extension itch-syntax-n.n.n.vsix
+* アンインストール ... > code --uninstall-extension toca.itch-syntax
+* プロジェクト内の itchsyntax を %HOMEPATH%\.vscode\extensions\ に配置しても利用出来ます
+
 
 # future
 * error?
