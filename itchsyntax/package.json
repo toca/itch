@@ -1,0 +1,26 @@
+{
+    "name": "itch-syntax",
+    "publisher": "toca",
+    "displayName": "itch-syntax",
+    "description": "Itch Language Syntax Highlight",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.58.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "itch",
+            "aliases": ["itch", "itch"],
+            "extensions": ["ich itch"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "itch",
+            "scopeName": "source.ich",
+            "path": "./syntaxes/itch.tmLanguage.json"
+        }]
+    }
+}
