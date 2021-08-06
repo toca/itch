@@ -14,7 +14,7 @@
         "languages": [{
             "id": "itch",
             "aliases": ["itch", "itch"],
-            "extensions": ["ich itch"],
+            "extensions": ["ich", "itch"],
             "configuration": "./language-configuration.json"
         }],
         "grammars": [{
