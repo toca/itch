@@ -48,7 +48,7 @@
 		"control": {
 			"patterns": [{
 				"name": "keyword.control.itch",
-				"match": "\\b(if|for|return|continue|break)\\b"
+				"match": "\\b(if|else|for|return|continue|break)\\b"
 			}]
 		},
 		"strings": {
