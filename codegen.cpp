@@ -35,6 +35,15 @@ void codegen(Program* program)
     println(L"@REM Global variables =================");
     gen_body(program->global_var, L"");
     println(L"@REM ==================================");
+    
+    // command-line arguments
+    println(L"SET i=0");
+    println(L":__ARGS_LOOP");
+    println(L"CALL SET __arg%%i%%=%%~0");
+    println(L"SHIFT");
+    println(L"SET /A i+=1");
+    println(L"CALL SET __temp_arg=%%0");
+    println(L"IF defined __temp_arg GOTO :__ARGS_LOOP\n");
 
     // call main function
     println(L"CALL :main __main_result");
@@ -316,7 +325,38 @@ std::wstring gen_expr(Node* node)
             wprintf(L"\n");
             return L"";
         }
+    }
+    case NodeKind::INDIRECT_CALL:
+    {
+        std::wstring args = L"";
+        for (auto var = node->args; var; var = var->next)
+        {
+            auto result = gen_expr(var);
+            if (var->kind == NodeKind::RVAR)
+            {
+                // avoid variable expansion
+                result = format(L"%%%s%%", result.c_str());
+            }
+            else if (var->kind == NodeKind::STR)
+            {
+                // on CALL "%" disapere
+                result = replace(result, L"%%", L"%%%%");
+            }
+            args += format(L"\"%s\" ", result.c_str());
         }
+        print(L"CALL :%%%s%% %s", node->name.c_str(), args.c_str());
+        // if func has return val
+        if (!node->type->is_void())
+        {
+            wprintf(L"__%s_result\n", node->name.c_str());
+            return format(L"%%__%s_result%%", node->name.c_str());
+        }
+        else
+        {
+            wprintf(L"\n");
+            return L"";
+        }
+    }
     case NodeKind::FUNCTION:
         return node->func_name.c_str();
     }

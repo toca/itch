@@ -282,7 +282,6 @@ std::vector<Var*> Parser::solve_vars(Node* body)
         for (Node* call : func_calls)
         {
             Func* func = this->find_func(call->name);
-            // FIXME ブロック内部の func_call (lambda) から外に出す処理が動作していないのでは?
             if (!func) continue;
             for (Var* var : func->outer_vars)
             {
@@ -1031,6 +1030,7 @@ Node* Parser::func_call()
     std::vector<Type*> func_args;
     Type* func_type;
     std::wstring func_name;
+    NodeKind call_kind = NodeKind::CALL;
 
     Token* token = tokens.try_consume(TokenKind::IDENT);
     if (token == nullptr)
@@ -1054,8 +1054,8 @@ Node* Parser::func_call()
         }
         func_type = var->type->func_return;
         func_args = var->type->func_args;
-        // FIXME
-        func_name = format(L"%%%s%%", var->name.c_str());
+        func_name = format(L"%s", var->name.c_str());
+        call_kind = NodeKind::INDIRECT_CALL;
     }
     else
     {
@@ -1102,7 +1102,7 @@ Node* Parser::func_call()
     }
 
 
-    Node* node = new_node(NodeKind::CALL, token);
+    Node* node = new_node(call_kind, token);
     node->name = func_name;
     node->args = head.next;
     node->type = func_type;

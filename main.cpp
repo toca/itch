@@ -17,7 +17,11 @@ std::wstring builtin_functions()
 {
     std::wstring s = LR"(
 // ==== ====  Built-in-Functions  ==== ====
-
+func args(i: int): string {
+    var result: string;
+    `call set result=%%__arg%i%%%`;
+    return result;
+}
 // command ====================================================
 func exec(command: string): string {
     `set "command=%command:&=^&%"`;

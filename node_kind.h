@@ -38,5 +38,6 @@ enum class NodeKind
 	FOR,			// for
 	FUNCTION,       // function
 	CALL,			// function call
+	INDIRECT_CALL,  // func object
 	GOTO,			// goto
 };
