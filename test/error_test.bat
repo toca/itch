@@ -46,7 +46,6 @@ call :fail "func main(): int { var b: bool = -true; return 42; }"
 call :fail "func main(): int { var i: int = !10; return 42; }"
 call :fail "func main(): int { var s: string = !"foo"; return 42; }
 @REM op +
-call :fail "func main(): int { var s: string = "foo" + "bar"; return 42; }"
 call :fail "func main(): int { var b: bool = true + false; return 42; }"
 @REM op -
 call :fail "func main(): int { var s: string = "foo" - "bar"; return 42; }"
@@ -63,7 +62,6 @@ call :fail "func main(): int { var b: bool = 2 % false; return 42; }"
 @REM op =
 call :fail "func main(): int { "foo" = "foo"; return 42; }"
 @REM op +=
-call :fail "func main(): int { var s: string = "foo"; s += "bar"; return 42; }"
 call :fail "func main(): int { var b: bool = true; b += false; return 42; }"
 @REM op -=
 call :fail "func main(): int { var s: string = "foo"; s -= "bar"; return 42; }"
