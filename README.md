@@ -78,6 +78,19 @@ MESSAGE = "bye"; // <- Error
 ```
 * 再代入することは出来ません
 
+### global variable
+* 関数の外側で定義された変数はグローバル変数となります
+```
+var g_state: string = "init"; // global variable
+func main(): int {
+    g_state = "main running";
+    ...
+}
+func f(): void {
+    g_state = "f";
+}
+```
+
 ## type
 ### int
 * 整数を表す型です
@@ -167,7 +180,7 @@ for(var i = 0; i < 10; i++) { print("Thank you"); } // OK
 * 代入演算は値を返しません
 
 ## escape sequence
-* "         ->  \"
+* "         ->  \\"
 * %         ->  %%
 * 改行      ->  \n ... (プログラム中でのみ改行として動作します)
 * タブ文字  ->  \t
@@ -179,8 +192,8 @@ var message="Thank you";
 print("%message% for your kindness");
 ```
 ## comment
-* `// ここはコメント`
-* ブロックコメントはありません
+* \`// ここはコメント\`
+* ブロックコメントに相当するものはありません
 
 ## command-literal
 * プログラム中にそのままコマンド（バッチ）を記述することが可能です
@@ -191,6 +204,7 @@ print("hello");
 // -> world
 ```
 
+## lambda & func obj TODO
 
 ## keywords
 * int, string, bool, void, func, return, for, if, else, break, continue, switch, case
@@ -199,6 +213,26 @@ print("hello");
 
 
 # built-in-functions
+### args(index: int): string
+* コマンドライン引数を取得します
+* index で指定されたコマンドライン引数が存在するか確認するには空文字列との比較が利用可能です
+```
+    // sample.bat foo bar
+    var a = args(0);
+    print(a); // sample.bat
+    var b = args(1);
+    print(b); // foo
+    var c = args(2);
+    print(c); // bar
+    
+    var d = args(3);
+    if (d == "") {
+        print("d: %d%");
+    } else {
+        print ("args(3) undefined");
+    } // args(3) undefined
+
+```
 ### print(message: string): void
 * 標準出力へメッセージを出力します
 * プログラム内部で記述されたか改行コード (\n) を認識します 
