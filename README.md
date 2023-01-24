@@ -1,5 +1,5 @@
 # itch
-a programming language that is compiled into a windows batch file.
+"itch" is a programming language that compiles to windows batch files.
 
 itch は windows バッチファイルを生成するためのシンプルなプログラミング言語です。コンパイラは windows バッチファイルを生成します
 
